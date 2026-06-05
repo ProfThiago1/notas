@@ -20,10 +20,15 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<MyAuthProvider>(context).user;
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple)),
-      home: const LoginScreen(),
+      initialRoute: user != null ? '/home' : '/login',
+      routes: {
+        '/login': (context) => const LoginScreen(),
+        '/home': (context) => const MyHomePage(title: 'Tela demonstrativa'),
+      },
     );
   }
 }

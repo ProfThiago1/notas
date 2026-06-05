@@ -16,7 +16,7 @@ class MyAuthProvider with ChangeNotifier {
         password: password,
       );
       notifyListeners(); // para notificar "os ouvintes" sobre a mudança de estado
-    } on FirebaseAuthException catch (e) {
+    } on FirebaseAuthException catch (_) {
       rethrow;
     }
   }
@@ -29,7 +29,7 @@ class MyAuthProvider with ChangeNotifier {
         password: password,
       );
       notifyListeners();
-    } on FirebaseAuthException catch (e) {
+    } on FirebaseAuthException catch (_) {
       rethrow;
       // e.message ?? 'Ocorreu um erro ao fazer login';
     }

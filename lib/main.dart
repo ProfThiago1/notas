@@ -1,17 +1,20 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:notas/screens/home_screen.dart';
 import 'firebase_options.dart';
 import 'package:flutter/material.dart';
 import 'package:notas/providers/auth_provider.dart';
 import 'package:provider/provider.dart';
 import 'screens/login_screen.dart';
 
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  runApp(ChangeNotifierProvider(
-    create: (_) => MyAuthProvider(), 
-    child: const MyApp(),));
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => MyAuthProvider(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -23,11 +26,13 @@ class MyApp extends StatelessWidget {
     final user = Provider.of<MyAuthProvider>(context).user;
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple)),
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+      ),
       initialRoute: user != null ? '/home' : '/login',
       routes: {
         '/login': (context) => const LoginScreen(),
-        '/home': (context) => const MyHomePage(title: 'Tela demonstrativa'),
+        '/home': (context) => const HomeScreen(),
       },
     );
   }

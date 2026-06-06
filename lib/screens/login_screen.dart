@@ -82,25 +82,30 @@ class _LoginScreenState extends State<LoginScreen> {
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              'Bem-vindo ao Notas App',
+              'Login',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               textAlign: TextAlign.left,
             ),
             const SizedBox(height: 20),
-           
+            const Text('Bem-vindo de volta! ', style: TextStyle(fontSize: 16)),
+            const SizedBox(height: 12),
+
             Container(
               padding: const EdgeInsets.all(24.0),
               width: double.infinity,
-              
+
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(12),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withValues(alpha: 0.08),
+                    color: Theme.of(context).brightness == Brightness.dark
+                        ? Colors.white.withValues(alpha: 0.12)
+                        : Colors.black.withValues(alpha: 0.12),
                     blurRadius: 12,
                     offset: const Offset(0, 6),
                   ),
@@ -108,28 +113,37 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
-                children:  [
-                 FormsLogin(
-              emailController: _emailController,
-              passwordController: _passwordController,
-              formKey: _formKey,
-            ),
+                children: [
+                  FormsLogin(
+                    emailController: _emailController,
+                    passwordController: _passwordController,
+                    formKey: _formKey,
+                  ),
 
-            const SizedBox(height: 20),
+                  const SizedBox(height: 20),
 
-            ElevatedButton( style: ElevatedButton.styleFrom(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
-              ),
-              backgroundColor: Theme.of(context).colorScheme.primary,
-             ),
-              onPressed: _submit, 
-              child: const Text('Entrar',
-              style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),)),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      backgroundColor: Theme.of(context).colorScheme.primary,
+                    ),
+                    onPressed: _submit,
+                    child: const Text(
+                      'Entrar',
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  Text('Não tem uma conta? Cadastre-se', textAlign: TextAlign.center, style: TextStyle(color: Theme.of(context).colorScheme.primary)),
                 ],
-              )
+              ),
             ),
-            
           ],
         ),
       ),

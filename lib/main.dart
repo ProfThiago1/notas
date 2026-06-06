@@ -28,6 +28,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
+      themeMode: ThemeMode.system,
       initialRoute: user != null ? '/home' : '/login',
       routes: {
         '/login': (context) => const LoginScreen(),

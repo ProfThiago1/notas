@@ -80,15 +80,36 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             const Text(
               'Bem-vindo ao Notas App',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              textAlign: TextAlign.left,
             ),
             const SizedBox(height: 20),
-            FormsLogin(
+           
+            Container(
+              padding: const EdgeInsets.all(24.0),
+              width: double.infinity,
+              
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(12),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withValues(alpha: 0.08),
+                    blurRadius: 12,
+                    offset: const Offset(0, 6),
+                  ),
+                ],
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children:  [
+                 FormsLogin(
               emailController: _emailController,
               passwordController: _passwordController,
               formKey: _formKey,
@@ -96,7 +117,19 @@ class _LoginScreenState extends State<LoginScreen> {
 
             const SizedBox(height: 20),
 
-            ElevatedButton(onPressed: _submit, child: const Text('Entrar')),
+            ElevatedButton( style: ElevatedButton.styleFrom(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8),
+              ),
+              backgroundColor: Theme.of(context).colorScheme.primary,
+             ),
+              onPressed: _submit, 
+              child: const Text('Entrar',
+              style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),)),
+                ],
+              )
+            ),
+            
           ],
         ),
       ),

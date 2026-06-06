@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:notas/providers/auth_provider.dart';
 import 'package:provider/provider.dart';
 import 'screens/login_screen.dart';
+import 'utils/apptema.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,9 +27,7 @@ class MyApp extends StatelessWidget {
     final user = Provider.of<MyAuthProvider>(context).user;
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      ),
+      theme: AppTheme.lightTheme,
       initialRoute: user != null ? '/home' : '/login',
       routes: {
         '/login': (context) => const LoginScreen(),

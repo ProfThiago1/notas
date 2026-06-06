@@ -24,6 +24,7 @@ class FormsLogin extends StatelessWidget {
             decoration: const InputDecoration(
               labelText: 'Email',
               border: OutlineInputBorder(),
+              
             ),
             validator: (value) {
               if (value == null || value.isEmpty) {

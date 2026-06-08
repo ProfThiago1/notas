@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:notas/providers/auth_provider.dart';
+import 'package:notas/utils/paleta.dart';
 import 'package:provider/provider.dart';
 import '../widgets/forms_login.dart';
 import 'package:flutter/gestures.dart';
@@ -91,86 +92,118 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Login',
-                style: TextStyle(
-                 
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(height: 8),
-              Text(
-                'Bem vindo(a) de volta',
-                style: TextStyle( fontSize: 14),
-              ),
-              const SizedBox(height: 24),
-              Expanded(
-                child: Container(
-                  padding: const EdgeInsets.all(24.0),
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(24),
-                      topRight: Radius.circular(24),
+      body: Container(
+        width: double.infinity,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 50),
+            const Padding(
+              padding: EdgeInsets.all(20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(children: [
+                    Icon(
+                      Icons.stylus_,
+                      color: Colors.white,
+                      size: 40,
                     ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Theme.of(context).brightness == Brightness.dark
+                    SizedBox(width: 10),
+                    Text(
+                    'Login ',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 40,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  ]),
+                  
+                  SizedBox(height: 10),
+                  Text(
+                    'Bem vindo(a) de volta',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 20),
+            Expanded(
+              child: Container(
+                width: double.infinity,
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(60),
+                    topRight: Radius.circular(60),
+                  ),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(30),
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 60),
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Theme.of(context).brightness == Brightness.dark
                             ? Colors.white.withValues(alpha: 0.12)
                             : Colors.black.withValues(alpha: 0.12),
-                        blurRadius: 12,
-                        offset: const Offset(0, 6),
-                      ),
-                    ],
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      FormsLogin(
-                        emailController: _emailController,
-                        passwordController: _passwordController,
-                        formKey: _formKey,
+                              blurRadius: 20,
+                              offset: const Offset(0, 10),
+                            ),
+                          ],
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(10),
+                          child: FormsLogin(
+                            emailController: _emailController,
+                            passwordController: _passwordController,
+                            formKey: _formKey,
+                          ),
+                        ),
                       ),
                       const SizedBox(height: 20),
+                    
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
+                          minimumSize: const Size.fromHeight(50),
+                          backgroundColor: AppColors.primary,
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
+                            borderRadius: BorderRadius.circular(10),
                           ),
-                          backgroundColor: Theme.of(
-                            context,
-                          ).colorScheme.primary,
                         ),
                         onPressed: _submit,
                         child: const Text(
                           'Entrar',
                           style: TextStyle(
-                            fontSize: 16,
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),
-                      const SizedBox(height: 20),
+                      const SizedBox(height: 50),
                       RichText(
                         textAlign: TextAlign.center,
                         text: TextSpan(
                           text: 'Não tem uma conta? ',
-                          style: TextStyle(color: Colors.black87, fontSize: 14),
+                          style: TextStyle(
+                            color: AppColors.darkGray,
+                            fontSize: 14,
+                          ),
                           children: [
                             TextSpan(
                               text: 'Cadastre-se',
                               style: TextStyle(
                                 decoration: TextDecoration.underline,
-                                color: Theme.of(context).colorScheme.primary,
+                                color: AppColors.primary,
                                 fontWeight: FontWeight.bold,
                               ),
                               recognizer: _tapRecognizer,
@@ -182,10 +215,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
               ),
-            ],
-          ),
+            )
+          ],
         ),
       ),
     );
   }
 }
+

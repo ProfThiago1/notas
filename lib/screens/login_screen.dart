@@ -105,7 +105,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 children: [
                   Row(children: [
                     Icon(
-                      Icons.stylus_,
+                      Icons.sticky_note_2_outlined,
                       color: Colors.white,
                       size: 40,
                     ),
